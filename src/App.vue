@@ -1,23 +1,23 @@
 <template>
   <div class="bg-gray-100 min-h-screen font-sans">
     <div class="print:hidden">
-      <header class="bg-blue-500 text-white p-4 shadow-md px-32">
-        <h1 class="text-2xl font-bold">
-          <img src="/logo_alan.png" alt="" srcset="" class="w-4" />Alan Resto
+      <header class="bg-blue-500 text-white flex py-1 shadow-md px-32">
+        <h1 class="text-2xl font-bold flex items-center gap-3">
+          <img src="/logo_alan.png" alt="" srcset="" class="w-20" />Alan Resto
         </h1>
       </header>
       <nav class="bg-white shadow-sm">
         <div class="container mx-32 flex">
           <RouterLink
             to="/food"
-            class="px-4 py-3 text-gray-700 hover:text-blue-500"
+            class="px-4 py-3 font-semibold text-gray-700 hover:text-blue-500"
             active-class="border-b-2 border-blue-500 text-blue-500"
           >
             Food
           </RouterLink>
           <RouterLink
             to="/"
-            class="px-4 py-3 text-gray-700 hover:text-blue-500"
+            class="px-4 py-3 font-semibold text-gray-700 hover:text-blue-500"
             active-class="border-b-2 border-blue-500 text-blue-500"
           >
             Transaksi

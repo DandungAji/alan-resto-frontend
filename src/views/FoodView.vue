@@ -15,7 +15,10 @@ function showListView() {
 </script>
 
 <template>
-  <p class="text-gray-500 mb-6">Tambahkan menu makanan yang ada di resto</p>
+  <p v-if="currentView === 'list'" class="text-gray-500 mb-6">
+    Tambahkan menu makanan yang ada di resto
+  </p>
+
   <div class="bg-white p-8 rounded-sm shadow-md w-full">
     <MenuList v-if="currentView === 'list'" @show-add-form="showAddForm" />
     <AddMenuForm v-else @cancel="showListView" />

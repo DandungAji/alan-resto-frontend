@@ -4,20 +4,13 @@ import { ref } from "vue";
 import PaymentModal from "./PaymentModal.vue";
 import SaveBillModal from "./SaveBillModal.vue";
 import PrintableBill from "./PrintableBill.vue";
+import { formatPrice } from "../utils/formatters.js";
 
 const cart = useCartStore();
 
 const isModalVisible = ref(false);
 const isSaveModalVisible = ref(false);
 const savedOrderNumber = ref(null);
-
-function formatPrice(value) {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-  }).format(value);
-}
 
 function showPaymentModal() {
   if (cart.items.length === 0) {

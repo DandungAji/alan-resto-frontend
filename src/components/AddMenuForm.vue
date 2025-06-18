@@ -7,9 +7,16 @@ const emit = defineEmits(["cancel", "product-added"]);
 const productName = ref("");
 const productPrice = ref("");
 const productImage = ref(null);
+const imagePreview = ref(null);
 
 function handleFileUpload(event) {
-  productImage.value = event.target.files[0];
+  const file = event.target.files[0];
+  productImage.value = file;
+  if (file) {
+    imagePreview.value = URL.createObjectURL(file);
+  } else {
+    imagePreview.value = null;
+  }
 }
 
 async function submitForm() {
@@ -61,45 +68,45 @@ async function submitForm() {
           class="block mb-2 text-sm font-medium text-gray-700"
           >Foto Menu</label
         >
-        <input
-          @change="handleFileUpload"
-          type="file"
-          id="foto-menu"
-          class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-          required
-        />
-      </div>
-
-      <!-- <div>
         <label
           for="foto-menu"
-          class="block mb-2 text-sm font-medium text-gray-700"
-          >Foto Menu</label
+          class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 rounded-sm cursor-pointer transition-colors"
+          :class="
+            imagePreview
+              ? 'bg-green-50 border-green-400'
+              : 'bg-gray-100 hover:bg-gray-50'
+          "
         >
-        <label
-          for="foto-menu"
-          class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 bg-gray-100 rounded-sm cursor-pointer hover:bg-gray-50 transition-colors"
-        >
-          <div class="text-center">
+          <div v-if="!imagePreview" class="text-center">
             <img
               src="/upload.png"
               alt="upload"
-              srcset=""
               class="w-12 h-12 opacity-30 mx-auto"
             />
             <p class="mt-2 text-sm text-gray-600">
               drag and drop a file here or click
             </p>
           </div>
+          <div v-else class="text-center">
+            <img
+              :src="imagePreview"
+              alt="preview"
+              class="max-h-40 max-w-full object-contain mx-auto"
+            />
+            <p class="mt-2 text-sm text-green-600 font-semibold">
+              Gambar telah dipilih
+            </p>
+          </div>
           <input
             @change="handleFileUpload"
             id="foto-menu"
             type="file"
-            class="hidden file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700"
+            accept="image/*"
+            class="hidden"
             required
           />
         </label>
-      </div> -->
+      </div>
 
       <div>
         <label

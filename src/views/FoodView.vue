@@ -1,26 +1,51 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
 import MenuList from "../components/MenuList.vue";
 import AddMenuForm from "../components/AddMenuForm.vue";
 
 const currentView = ref("list");
+const menuItems = ref([]);
+const isLoading = ref(true);
+
+async function fetchProducts() {
+  try {
+    isLoading.value = true;
+    const response = await axios.get("http://127.0.0.1:8000/api/products");
+    menuItems.value = response.data;
+  } catch (error) {
+    console.error("Gagal mengambil data produk:", error);
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+onMounted(fetchProducts);
 
 function showAddForm() {
   currentView.value = "form";
 }
 
-function showListView() {
+function handleProductAdded() {
   currentView.value = "list";
+  fetchProducts();
 }
 </script>
 
 <template>
-  <p v-if="currentView === 'list'" class="text-gray-500 mb-6">
-    Tambahkan menu makanan yang ada di resto
-  </p>
-
-  <div class="bg-white p-8 rounded-sm shadow-md w-full">
-    <MenuList v-if="currentView === 'list'" @show-add-form="showAddForm" />
-    <AddMenuForm v-else @cancel="showListView" />
+  <div class="bg-white p-8 rounded-lg shadow-md w-full">
+    <div v-if="isLoading" class="text-center p-8">Memuat...</div>
+    <template v-else>
+      <MenuList
+        v-if="currentView === 'list'"
+        :items="menuItems"
+        @show-add-form="showAddForm"
+      />
+      <AddMenuForm
+        v-else
+        @cancel="showAddForm"
+        @product-added="handleProductAdded"
+      />
+    </template>
   </div>
 </template>

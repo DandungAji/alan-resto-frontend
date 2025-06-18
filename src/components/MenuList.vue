@@ -1,18 +1,14 @@
 <script setup>
-import { ref } from "vue";
 import { formatPrice } from "../utils/formatters.js";
 
-const emit = defineEmits(["showAddForm"]);
+defineProps({
+  items: {
+    type: Array,
+    required: true,
+  },
+});
 
-const menuItems = ref([
-  { id: 1, name: "Sate Ayam", photo: "sate_ayam.jpg", price: 30000 },
-  { id: 2, name: "Bakso", photo: "bakso.webp", price: 10000 },
-  { id: 3, name: "Tempe Goreng", photo: "tempe_goreng.jpg", price: 5000 },
-  { id: 4, name: "Tahu Isi", photo: "tahu_isi.jpg", price: 10000 },
-  { id: 5, name: "Soto Ayam", photo: "soto_ayam.webp", price: 30000 },
-  { id: 6, name: "Nasi Padang", photo: "nasi_padang.webp", price: 30000 },
-  { id: 7, name: "Taco", photo: "./taco.jpg", price: 30000 },
-]);
+const emit = defineEmits(["showAddForm"]);
 </script>
 
 <template>
@@ -35,7 +31,7 @@ const menuItems = ref([
       </thead>
       <tbody>
         <tr
-          v-for="(item, index) in menuItems"
+          v-for="(item, index) in items"
           :key="item.id"
           class="odd:bg-gray-50 even:bg-white hover:bg-sky-100 transition-colors"
         >
@@ -43,7 +39,7 @@ const menuItems = ref([
           <td class="p-4">{{ item.name }}</td>
           <td class="p-4">
             <img
-              :src="item.photo"
+              :src="`http://127.0.0.1:8000/storage/${item.image}`"
               :alt="item.name"
               class="h-12 w-16 object-cover rounded-sm"
             />

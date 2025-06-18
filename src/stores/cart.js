@@ -26,5 +26,26 @@ export const useCartStore = defineStore('cart', () => {
     items.value = []
   }
 
-  return { items, totalItems, totalPrice, addToCart, clearCart }
+  function generateOrderNumber() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yy = today.getFullYear().toString().slice(-2);
+    
+    const dateKey = `${today.getFullYear()}${mm}${dd}`;
+    const lastOrderDate = localStorage.getItem('lastOrderDate');
+    
+    let counter = 1;
+    
+    if (lastOrderDate === dateKey) {
+      counter = Number(localStorage.getItem('orderCounter')) + 1;
+    }
+    
+    localStorage.setItem('lastOrderDate', dateKey);
+    localStorage.setItem('orderCounter', counter);
+
+    return `#${counter}-${dd}${mm}${yy}`;
+  }
+
+  return { items, totalItems, totalPrice, addToCart, clearCart, generateOrderNumber } 
 })

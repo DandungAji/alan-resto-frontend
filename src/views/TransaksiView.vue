@@ -22,9 +22,8 @@ function handleAddToCart(product) {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-    
-    <div class="md:col-span-2">
+  <div class="flex flex-col md:flex-row gap-8">
+    <div class="w-full md:w-2/3 print:hidden">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-12 gap-y-8">
         <ProductCard 
           v-for="product in products" 
@@ -35,11 +34,8 @@ function handleAddToCart(product) {
       </div>
     </div>
 
-    <div class="md:col-span-1">
-      <div class="md:sticky top-6">
-        <OrderBill />
-      </div>
+    <div class="w-full md:w-1/3">
+      <OrderBill />
     </div>
-
   </div>
-  </template>
+</template>

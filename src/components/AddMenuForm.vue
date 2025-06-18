@@ -1,42 +1,79 @@
 <script setup>
-const emit = defineEmits(['cancel'])
+const emit = defineEmits(["cancel"]);
 </script>
 
 <template>
   <div>
-    <h2 class="text-xl font-semibold mb-6">Tambahkan Menu</h2>
+    <h2 class="text-2xl font-medium mb-8 text-blue-500">Tambahkan Menu</h2>
 
     <div class="space-y-6">
       <div>
-        <label for="nama-menu" class="block mb-2 text-sm font-medium text-gray-700">Nama Menu</label>
-        <input type="text" id="nama-menu" class="w-full p-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500">
+        <label
+          for="nama-menu"
+          class="block mb-2 text-sm font-medium text-gray-700"
+          >Nama Menu</label
+        >
+        <input
+          type="text"
+          id="nama-menu"
+          class="w-full p-3 border border-gray-300 rounded-sm focus:ring-blue-500 focus:border-blue-500"
+        />
       </div>
 
       <div>
-        <label for="foto-menu" class="block mb-2 text-sm font-medium text-gray-700">Foto Menu</label>
-        <div class="flex items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-md">
+        <label
+          for="foto-menu"
+          class="block mb-2 text-sm font-medium text-gray-700"
+          >Nama Menu</label
+        >
+        <label
+          for="foto-menu"
+          class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 bg-gray-100 rounded-sm cursor-pointer hover:bg-gray-50 transition-colors"
+        >
           <div class="text-center">
-            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-              <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <p class="mt-1 text-sm text-gray-600">Drag and drop atau klik untuk upload</p>
+            <img
+              src="/upload.png"
+              alt="upload"
+              srcset=""
+              class="w-12 h-12 opacity-30 mx-auto"
+            />
+            <p class="mt-2 text-sm text-gray-600">
+              drag and drop a file here or click
+            </p>
           </div>
-        </div>
+          <input id="foto-menu" type="file" class="hidden" />
+        </label>
       </div>
 
       <div>
-        <label for="harga-menu" class="block mb-2 text-sm font-medium text-gray-700">Harga Menu</label>
-        <input type="text" id="harga-menu" class="w-full p-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500">
+        <label
+          for="harga-menu"
+          class="block mb-2 text-sm font-medium text-gray-700"
+          >Nama Menu</label
+        >
+        <div class="relative">
+          <div
+            class="absolute inset-y-0 left-0 flex items-center px-4 pointer-events-none bg-blue-500 rounded-l-md"
+          >
+            <span class="text-white font-semibold">Rp.</span>
+          </div>
+          <input
+            type="number"
+            id="harga-menu"
+            class="w-full p-3 pl-16 border border-gray-300 rounded-sm focus:ring-blue-500 focus:border-blue-500"
+            placeholder=""
+          />
+        </div>
       </div>
     </div>
 
-    <div class="flex justify-end space-x-4 mt-8">
-        <button @click="emit('cancel')" type="button" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
-            Batal
-        </button>
-        <button type="submit" class="px-6 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700">
-            Simpan
-        </button>
+    <div class="flex justify-end mt-10">
+      <button
+        type="submit"
+        class="px-10 py-3 bg-green-500 text-white font-semibold rounded-sm hover:bg-green-600 transition-colors"
+      >
+        Simpan
+      </button>
     </div>
   </div>
 </template>

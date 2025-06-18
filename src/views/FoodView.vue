@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from 'vue'
-import MenuList from '../components/MenuList.vue'
-import AddMenuForm from '../components/AddMenuForm.vue'
+import { ref } from "vue";
+import MenuList from "../components/MenuList.vue";
+import AddMenuForm from "../components/AddMenuForm.vue";
 
-const currentView = ref('list')
+const currentView = ref("list");
 
 function showAddForm() {
-  currentView.value = 'form'
+  currentView.value = "form";
 }
 
 function showListView() {
-  currentView.value = 'list'
+  currentView.value = "list";
 }
 </script>
 

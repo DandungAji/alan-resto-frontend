@@ -1,5 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import axios from "axios";
 
 export const useCartStore = defineStore("cart", () => {
   const items = ref([]);
@@ -24,6 +25,31 @@ export const useCartStore = defineStore("cart", () => {
 
   function clearCart() {
     items.value = [];
+  }
+
+  async function checkout(amountPaid, change) {
+    try {
+      const payload = {
+        total_price: totalPrice.value,
+        amount_paid: amountPaid,
+        change: change,
+        items: items.value.map((item) => ({
+          product_id: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+      };
+
+      await axios.post("http://127.0.0.1:8000/api/transactions", payload);
+
+      clearCart();
+      alert("Transaksi berhasil disimpan!");
+    } catch (error) {
+      console.error("Gagal menyimpan transaksi:", error);
+      alert("Gagal menyimpan transaksi. Lihat console untuk detail.");
+
+      throw error;
+    }
   }
 
   function generateOrderNumber() {
@@ -54,5 +80,6 @@ export const useCartStore = defineStore("cart", () => {
     addToCart,
     clearCart,
     generateOrderNumber,
+    checkout,
   };
 });

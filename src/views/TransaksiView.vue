@@ -1,20 +1,22 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
 import ProductCard from "../components/ProductCard.vue";
 import OrderBill from "../components/OrderBill.vue";
-import { useCartStore } from "../stores/cart.js";
+import { useCartStore } from "../stores/cart";
 
 const cart = useCartStore();
 
-const products = ref([
-  { id: 1, name: "Sate Ayam", photo: "sate_ayam.jpg", price: 30000 },
-  { id: 2, name: "Bakso", photo: "bakso.webp", price: 10000 },
-  { id: 3, name: "Tempe Goreng", photo: "tempe_goreng.jpg", price: 5000 },
-  { id: 4, name: "Tahu Isi", photo: "tahu_isi.jpg", price: 10000 },
-  { id: 5, name: "Soto Ayam", photo: "soto_ayam.webp", price: 30000 },
-  { id: 6, name: "Nasi Padang", photo: "nasi_padang.webp", price: 30000 },
-  { id: 7, name: "Taco", photo: "./taco.jpg", price: 30000 },
-]);
+const products = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await axios.get("http://127.0.0.1:8000/api/products");
+    products.value = response.data;
+  } catch (error) {
+    console.error("Gagal mengambil data produk di halaman transaksi:", error);
+  }
+});
 
 function handleAddToCart(product) {
   cart.addToCart(product);

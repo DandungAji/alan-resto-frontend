@@ -72,7 +72,7 @@ function handlePrintBill() {
             class="flex items-center mb-4"
           >
             <img
-              :src="item.photo"
+              :src="`http://127.0.0.1:8000/storage/${item.image}`"
               :alt="item.name"
               class="w-24 h-20 object-cover rounded-sm mr-4"
             />

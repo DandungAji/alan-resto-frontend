@@ -18,21 +18,18 @@ const change = computed(() => {
   return paymentAmount.value - totalBill.value;
 });
 
-function handlePay() {
+async function handlePay() {
   if (paymentAmount.value === null || paymentAmount.value < totalBill.value) {
     alert("Jumlah uang pembeli tidak cukup!");
     return;
   }
-  alert(
-    `Pembayaran berhasil!\nTotal: ${formatPrice(
-      totalBill.value
-    )}\nBayar: ${formatPrice(paymentAmount.value)}\nKembali: ${formatPrice(
-      change.value
-    )}`
-  );
+  try {
+    await cart.checkout(paymentAmount.value, change.value);
 
-  cart.clearCart();
-  emit("close");
+    emit("close");
+  } catch (error) {
+    alert("Gagal memproses pembayaran. Silakan coba lagi.");
+  }
 }
 </script>
 

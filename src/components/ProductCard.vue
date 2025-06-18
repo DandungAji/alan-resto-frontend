@@ -14,7 +14,7 @@ defineProps({
     class="bg-white rounded-sm shadow-sm overflow-hidden cursor-pointer shadow-lg hover:shadow-sm transition-shadow duration-200"
   >
     <img
-      :src="product.photo"
+      :src="`http://127.0.0.1:8000/storage/${product.image}`"
       :alt="product.name"
       class="w-full h-64 object-cover"
     />

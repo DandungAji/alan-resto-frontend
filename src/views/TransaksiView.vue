@@ -13,7 +13,7 @@ const products = ref([
   { id: 4, name: 'Tahu Isi', photo: 'tahu_isi.jpg', price: 10000 },
   { id: 5, name: 'Soto Ayam', photo: 'soto_ayam.webp', price: 30000 },
   { id: 6, name: 'Nasi Padang', photo: 'nasi_padang.webp', price: 30000 },
-  { id: 7, name: 'Taco', photo: './taco.jpg', price: 30000 }
+  { id: 7, 'name': 'Taco', 'photo': './taco.jpg', 'price': 30000 }
 ])
 
 function handleAddToCart(product) {
@@ -22,8 +22,9 @@ function handleAddToCart(product) {
 </script>
 
 <template>
-  <div class="flex flex-col md:flex-row gap-8">
-    <div class="w-full md:w-2/3">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+    
+    <div class="md:col-span-2">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-12 gap-y-8">
         <ProductCard 
           v-for="product in products" 
@@ -34,8 +35,11 @@ function handleAddToCart(product) {
       </div>
     </div>
 
-    <div class="w-full md:w-1/3">
-      <OrderBill />
+    <div class="md:col-span-1">
+      <div class="md:sticky top-6">
+        <OrderBill />
+      </div>
     </div>
+
   </div>
-</template>
+  </template>

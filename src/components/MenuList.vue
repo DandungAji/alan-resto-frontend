@@ -12,11 +12,19 @@ const menuItems = ref([
   { id: 6, name: 'Nasi Padang', photo: 'nasi_padang.webp', price: 30000 },
   { id: 7, name: 'Taco', photo: './taco.jpg', price: 30000 }
 ])
+
+function formatPrice(value) {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0
+  }).format(value);
+}
 </script>
 
 <template>
   <div>
-    <button @click="emit('showAddForm')" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 mb-6">
+    <button @click="emit('showAddForm')" class="bg-sky-500 text-white font-bold py-2 px-4 rounded hover:bg-sky-700 mb-6">
       + Tambah Menu
     </button>
 
@@ -34,9 +42,9 @@ const menuItems = ref([
           <td class="p-4">{{ index + 1 }}</td>
           <td class="p-4">{{ item.name }}</td>
           <td class="p-4">
-            <img :src="item.photo" :alt="item.name" class="h-12 w-16 object-cover rounded-md">
+            <img :src="item.photo" :alt="item.name" class="h-12 w-16 object-cover rounded-sm">
           </td>
-          <td class="p-4">{{ item.price }}</td>
+          <td class="p-4">{{ formatPrice(item.price) }}</td>
         </tr>
       </tbody>
     </table>

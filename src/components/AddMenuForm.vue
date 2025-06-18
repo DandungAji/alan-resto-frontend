@@ -9,7 +9,7 @@ const emit = defineEmits(['cancel'])
     <div class="space-y-6">
       <div>
         <label for="nama-menu" class="block mb-2 text-sm font-medium text-gray-700">Nama Menu</label>
-        <input type="text" id="nama-menu" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+        <input type="text" id="nama-menu" class="w-full p-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500">
       </div>
 
       <div>
@@ -26,7 +26,7 @@ const emit = defineEmits(['cancel'])
 
       <div>
         <label for="harga-menu" class="block mb-2 text-sm font-medium text-gray-700">Harga Menu</label>
-        <input type="text" id="harga-menu" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+        <input type="text" id="harga-menu" class="w-full p-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500">
       </div>
     </div>
 

@@ -20,7 +20,7 @@ function formatPrice(value) {
     <img :src="product.photo" :alt="product.name" class="w-full h-64 object-cover">
     <div class="p-3 text-center">
       <h3 class="font-semibold text-base text-gray-800">{{ product.name }}</h3>
-      <p class="text-blue-600 font-bold mt-1">{{ formatPrice(product.price) }}</p>
+      <p class="text-sky-500 font-bold mt-1">{{ formatPrice(product.price) }}</p>
     </div>
   </div>
 </template>

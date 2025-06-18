@@ -1,30 +1,33 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="bg-gray-100 min-h-screen font-sans">
+    <header class="bg-blue-500 text-white p-4 shadow-md">
+      <h1 class="text-2xl mx-64 font-bold">Alan Resto</h1>
+    </header>
+    <nav class="bg-white shadow-sm">
+      <div class="container mx-64 flex">
+        <RouterLink 
+          to="/food" 
+          class="px-4 py-3 text-gray-700 hover:text-blue-500"
+          active-class="border-b-2 border-blue-500 text-blue-500"
+        >
+          Food
+        </RouterLink>
+        <RouterLink 
+          to="/" 
+          class="px-4 py-3 text-gray-700 hover:text-blue-500" 
+          active-class="border-b-2 border-blue-500 text-blue-500"
+        >
+          Transaksi
+        </RouterLink>
+      </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-6">
+      <RouterView />
+    </main>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+</script>
